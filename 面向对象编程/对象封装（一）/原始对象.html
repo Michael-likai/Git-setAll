@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    
+    var Person8 = {
+      name:'',
+      age:'',
+    }
+
+    // 根据以上原型对象生成下面两个实例对象
+
+    var Person1 = {};
+        Person1.name = 'kk';
+        Person1.age = '18';
+
+    var Person2 = {};
+        Person2.name = 'xm';
+        Person2.age = '20';
+
+    // 以上生成多个实例比较麻烦，因此如下返回一个对象
+
+    function Person(name,age){
+      return {
+        name:name,
+        age:age,
+      }
+    }
+
+    var Person3 = Person('kk','18');
+    var Person4 = Person('xm','20');
+
+    // 以上看不出1，2内有联系，不能反映来自同一个原型对象实例,
+    // 因此下面提供一种构造函数，他也是普通函数，只不过内部使用this变量，然后使用new运算符，
+    // 就可以生成新的实例，并且this变量会绑定在新的实例上
+
+    function Person(name,age){
+      this.name = name;
+      this.age = age;
+    }
+    var Person5 = new Person('kk','18');
+    var Person6 = new Person('xm','20');
+
+    console.log(Person5,Person6) // 输出两个不同的Person对象
+    console.log(Person.prototype) 
+    // 就是Person的原型是函数为Object,对象里面有constructor属性和__proto__对象(内部就是一些原型的方法)
+    console.log(Person5.name)
+    console.log(Person5.constructor === Person)
+
+  </script>
+</body>
+</html>
